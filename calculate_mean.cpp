@@ -1,12 +1,12 @@
-nclude <type_traits>
+#include <type_traits>
 
 template
 <
-typename InputItr,
+	typename InputItr,
 	 std::enable_if_t<std::is_arithmetic<typename std::decay_t<InputItr>::value_type>::value>* 
 	 = nullptr
-	 >
-	 constexpr inline auto sum(InputItr first, InputItr last) noexcept
+ >
+constexpr inline auto sum(InputItr first, InputItr last) noexcept
 {
 	using ValType = std::decay_t<decltype(*first)>;
 	auto result{static_cast<ValType>(0)};
@@ -18,11 +18,11 @@ typename InputItr,
 
 template
 <
-typename InputItr,
-	 std::enable_if_t<std::is_arithmetic<typename std::decay_t<InputItr>::value_type>::value>* 
-	 = nullptr
-	 >
-	 constexpr inline auto mean(InputItr first, InputItr last) noexcept
+	typename InputItr,
+	std::enable_if_t<std::is_arithmetic<typename std::decay_t<InputItr>::value_type>::value>* 
+	= nullptr
+>
+constexpr inline auto mean(InputItr first, InputItr last) noexcept
 {
 	return sum(first, last) / std::distance(first, last);
 }
